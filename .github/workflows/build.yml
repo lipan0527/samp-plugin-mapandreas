@@ -1,5 +1,4 @@
 name: Build MapAndreas
-
 on:
   push:
     branches: [ master, main ]
@@ -8,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,7 +20,7 @@ jobs:
         uses: lukka/get-cmake@latest
 
       - name: Configure
-        run: cmake -B build -A x64
+        run: cmake -B build -G "Visual Studio 17 2022" -A x64
 
       - name: Build
         run: cmake --build build --config Release
@@ -34,3 +32,4 @@ jobs:
           path: |
             build/**/*.dll
             build/**/*.pdb
+          compression-level: 0
